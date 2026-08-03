@@ -23,6 +23,16 @@ def create_app():
     bcrypt.init_app(app)
     ma.init_app(app)
 
+    # Import models
+    from models.user import User
+    from models.tournament import Tournament
+    from models.club import Club
+    from models.group import Group
+    from models.match import Match
+    from models.standings import Standings
+    from models.tournament_club import TournamentClub
+
+
     from controllers.auth_controller import auth_bp
     from controllers.club_controller import club_bp
     from controllers.group_controller import group_bp
