@@ -12,4 +12,5 @@ class Group(db.Model):
         db.Integer,
         db.ForeignKey("tournaments.id")
     )
-    
+
+    standings = db.relationship("Standings", backref="group", lazy=True)

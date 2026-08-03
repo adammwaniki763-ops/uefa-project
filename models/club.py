@@ -14,4 +14,8 @@ class Club(db.Model):
 
     stadium = db.Column(db.String(100))
 
-    logo_url = db.Column(db.String(255)), nullable=False
+    logo_url = db.Column(db.String(255))
+
+    standings = db.relationship("Standings", backref="club", lazy=True)
+
+    tournament_clubs = db.relationship("TournamentClub", backref="club", lazy=True)
