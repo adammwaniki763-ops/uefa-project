@@ -1,43 +1,42 @@
 import React from 'react';
+import { StandingRow } from './StandingRow';
 
-export const StandingRow = ({ standing, position }) => {
-  const getMedalEmoji = (position) => {
-    if (position === 1) return '🥇';
-    if (position === 2) return '🥈';
-    if (position === 3) return '🥉';
-    return '  ';
-  };
-
+export const GroupTable = ({ groupName, standings }) => {
   return (
-    <tr>
-      <td>
-        <span className="standings-position">
-          {getMedalEmoji(position)} {position}
-        </span>
-      </td>
-      <td>
-        <div className="standings-team">
-          <span className="standings-team-logo">⚽</span>
-          <span className="standings-team-name">{standing.club_name}</span>
+    <div className="group-table">
+      <div className="group-table-header">
+        {groupName}
+      </div>
+      <div className="group-table-content">
+        <div className="standings-table">
+          <table>
+            <thead>
+              <tr>
+                <th style={{ width: '5%' }}>Pos</th>
+                <th style={{ width: '35%' }}>Team</th>
+                <th style={{ width: '8%' }}>P</th>
+                <th style={{ width: '8%' }}>W</th>
+                <th style={{ width: '8%' }}>D</th>
+                <th style={{ width: '8%' }}>L</th>
+                <th style={{ width: '8%' }}>GF</th>
+                <th style={{ width: '8%' }}>GA</th>
+                <th style={{ width: '8%' }}>GD</th>
+                <th style={{ width: '8%' }}>Pts</th>
+              </tr>
+            </thead>
+            <tbody>
+              {standings && standings.map((standing, index) => (
+                <StandingRow 
+                  key={standing.id} 
+                  standing={standing} 
+                  position={index + 1}
+                />
+              ))}
+            </tbody>
+          </table>
         </div>
-      </td>
-      <td>{standing.matches_played}</td>
-      <td>{standing.wins}</td>
-      <td>{standing.draws}</td>
-      <td>{standing.losses}</td>
-      <td>{standing.goals_for}</td>
-      <td>{standing.goals_against}</td>
-      <td>
-        <span style={{ 
-          color: standing.goal_difference > 0 ? '#28a745' : standing.goal_difference < 0 ? '#dc3545' : '#666',
-          fontWeight: '600'
-        }}>
-          {standing.goal_difference > 0 ? '+' : ''}{standing.goal_difference}
-        </span>
-      </td>
-      <td style={{ fontWeight: '700', color: '#0066cc' }}>
-        {standing.points}
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 };
+
