@@ -4,11 +4,16 @@ from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_marshmallow import Marshmallow
 from flask_cors import CORS
+from flask.cli import with_appcontext
+import click
 
+
+# Initialize extensions
 db = SQLAlchemy()
 migrate = Migrate()
 bcrypt = Bcrypt()
 ma = Marshmallow()
+
 
 def create_app():
 
@@ -39,6 +44,25 @@ def create_app():
     app.register_blueprint(match_bp)
     app.register_blueprint(standings_bp)
     app.register_blueprint(tournament_bp)
+
+    @app.cli.command("seed")
+    @with_appcontext
+    def seed():
+        from models.user import User
+
+        db.create_all()
+
+        admin = User(
+            username="admin",
+            email="admin@gmail.com",
+            role="admin"
+        )
+        admin.set_password("admin123")
+
+        db.session.add(admin)
+        db.session.commit()
+
+        click.echo("Database tables created and admin user seeded successfully!")
 
     return app
 

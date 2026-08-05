@@ -31,7 +31,7 @@ class Tournament(db.Model):
 
     matches = db.relationship(
         "Match",
-        backref="tournament",
+        back_populates="tournament",
         lazy=True
     )
 
