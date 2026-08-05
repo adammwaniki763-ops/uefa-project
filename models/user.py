@@ -1,4 +1,4 @@
-from app import db
+from app import db, bcrypt
 
 class User(db.Model):
 
@@ -14,4 +14,15 @@ class User(db.Model):
 
     role = db.Column(db.String(20), default="user")
 
-    tournaments = db.relationship("Tournament", backref="admin", lazy=True)
+    tournaments = db.relationship(
+        "Tournament",
+        backref="admin",
+        lazy=True,
+        cascade="all, delete-orphan"
+    )
+
+    def set_password(self, password):
+        self.password_hash = bcrypt.generate_password_hash(password).decode("utf-8")
+
+    def check_password(self, password):
+        return bcrypt.check_password_hash(self.password_hash, password)

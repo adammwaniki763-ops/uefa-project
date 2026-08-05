@@ -18,10 +18,25 @@ class Tournament(db.Model):
 
     status = db.Column(db.String(50))
 
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey("users.id")
+    )
 
-    groups = db.relationship("Group", backref="tournament", lazy=True)
+    groups = db.relationship(
+        "Group",
+        backref="tournament",
+        lazy=True
+    )
 
-    matches = db.relationship("Match", backref="tournament", lazy=True)
+    matches = db.relationship(
+        "Match",
+        backref="tournament",
+        lazy=True
+    )
 
-    tournament_clubs = db.relationship("TournamentClub", backref="tournament", lazy=True)
+    tournament_clubs = db.relationship(
+        "TournamentClub",
+        backref="tournament",
+        lazy=True
+    )

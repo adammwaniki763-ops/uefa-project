@@ -16,6 +16,14 @@ class Club(db.Model):
 
     logo_url = db.Column(db.String(255))
 
-    standings = db.relationship("Standings", backref="club", lazy=True)
+    standings = db.relationship(
+        "Standings",
+        backref="club",
+        lazy=True
+    )
 
-    tournament_clubs = db.relationship("TournamentClub", backref="club", lazy=True)
+    tournament_clubs = db.relationship(
+        "TournamentClub",
+        backref="club",
+        lazy=True
+    )

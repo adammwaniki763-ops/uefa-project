@@ -13,4 +13,8 @@ class Group(db.Model):
         db.ForeignKey("tournaments.id")
     )
 
-    standings = db.relationship("Standings", backref="group", lazy=True)
+    standings = db.relationship(
+        "Standings",
+        backref="group",
+        lazy=True
+    )
