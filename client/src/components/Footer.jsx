@@ -41,7 +41,7 @@ export const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; 2024 Champions League Tournament Manager. All rights reserved. | This is an educational project inspired by UEFA Champions League.</p>
+        <p>&copy; 2026 Champions League Tournament Manager. All rights reserved. | This is an educational project inspired by UEFA Champions League.</p>
       </div>
     </footer>
   );
