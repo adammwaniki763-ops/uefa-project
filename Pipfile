@@ -5,6 +5,15 @@ name = "pypi"
 
 [packages]
 python-dotenv = "*"
+flask = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
+flask-bcrypt = "*"
+flask-marshmallow = "*"
+flask-cors = "*"
+marshmallow = "*"
+marshmallow-sqlalchemy = "*"
+alembic = "*"
 
 [dev-packages]
 
